@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
+
 
 Route::get('/', function () {
     return view('frontend.home.index');
@@ -12,17 +15,30 @@ Route::get('/about', function () {
 
 Route::get('/post', function () {
     return view('frontend.post.index');
-})->name('post');
+})->name('front_post');
 
 Route::get('/contact', function () {
     return view('frontend.contact.index');
 })->name('contact');
 
-Route::get('/dashboard', function () {
-    return view('backend.dashboard.index');
+
+// Route::get('/dashboard', function () {
+//     return view('backend.dashboard.index');
+//     // This middleware means if anyone wants to access dashboard he should be verified
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-})->middleware(['auth', 'verified'])->name('dashboard');
+// but if we want to have authentication for different pages, we can make a middleware group for them
+Route::middleware('auth')->group(
+    function(){
+        Route::get('/dashboard',function(){
+            return view('backend.dashboard.index');
+        })->name('dashboard');
+
+        Route::resource('post', PostController::class);
+    }
+
+);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
