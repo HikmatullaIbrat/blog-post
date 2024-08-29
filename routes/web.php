@@ -13,7 +13,7 @@ Route::get('/about', function () {
     return view('frontend.about.index');
 })->name('about');
 
-Route::get('/post', function () {
+Route::get('/posts', function () {
     return view('frontend.post.index');
 })->name('front_post');
 
@@ -39,6 +39,13 @@ Route::middleware('auth')->group(
     }
 
 );
+
+// link of laravel file manager
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

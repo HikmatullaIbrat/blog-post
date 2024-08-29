@@ -19,6 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('backend/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.3.0/tinymce.min.js" referrerpolicy="origin"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.3.0/plugins/image/plugin.min.js" referrerpolicy="origin"></script> --}}
 
 </head>
 
@@ -84,12 +86,12 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                        <li class="nav-item dropdown no-arrow ">
+                            <a class="nav-link dropdown-toggle float-right" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="{{asset('backend/img/undraw_profile.svg')}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -179,6 +181,42 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('backend/js/sb-admin-2.min.js')}}"></script>
+    <script>
+        var editor_config = {
+          path_absolute : "/",
+          selector: "textarea.my-editor",
+          plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor colorpicker textpattern"
+          ],
+          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+          relative_urls: false,
+          file_browser_callback : function(field_name, url, type, win) {
+            var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+            var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+      
+            var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+            if (type == 'image') {
+              cmsURL = cmsURL + "&type=Images";
+            } else {
+              cmsURL = cmsURL + "&type=Files";
+            }
+      
+            tinyMCE.activeEditor.windowManager.open({
+              file : cmsURL,
+              title : 'Filemanager',
+              width : x * 0.8,
+              height : y * 0.8,
+              resizable : "yes",
+              close_previous : "no"
+            });
+          }
+        };
+      
+        tinymce.init(editor_config);
+      </script>
 
 </body>
 

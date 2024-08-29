@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Str;
 
 class PostController extends Controller
 {
@@ -12,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('backend.post.index');
+        return view('backend.post.index')
+        ->with('posts',Post::all());
     }
 
     /**
@@ -20,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.post.create');
     }
 
     /**
@@ -28,7 +31,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated_data = $request->validate([
+            'title' => 'required',
+            'sub_title' =>'required',
+            'description' => 'required'
+        ]);
+        // Generate a slug from the title
+        // $validatedData['slug'] = Str::slug($request->sub_title);
+
+        Post::create(['title'=>$request->title, 'sub_title'=>$request->sub_title, 'description'=>$request->description, 'slug'=>Str::slug($request->title)]);
+        return redirect()->route('post.index')->with('success', 'Post created successfully.');
+
     }
 
     /**
