@@ -9,7 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+
     <title>SB Admin 2 - Blank</title>
+    <meta name="csrf-token" content="{{csrf_token()}}">
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -19,6 +21,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('backend/css/sb-admin-2.min.css')}}" rel="stylesheet">
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.3.0/tinymce.min.js" referrerpolicy="origin"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.3.0/plugins/image/plugin.min.js" referrerpolicy="origin"></script> --}}
 
@@ -181,7 +184,15 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('backend/js/sb-admin-2.min.js')}}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+
+
+    @yield('script')
+
     <script>
+        // This code is copied from tinymce and works in description of post, it gives a ms word style to description section
         var editor_config = {
           path_absolute : "/",
           selector: "textarea.my-editor",
@@ -216,6 +227,28 @@
         };
       
         tinymce.init(editor_config);
+      </script>
+      <script>
+        // This script is for showing a notification message when a CRUD operation is executed
+        const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      
+      @if(Session::has('success'))
+      Toast.fire({
+        icon: "success",
+        title: "{{Session::get('success')}}"
+      });
+      @endif
+      
       </script>
 
 </body>

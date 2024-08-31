@@ -34,7 +34,7 @@
                 <td>{{$post->description}}</td>
                 <td>
                   <a href="{{route('post.edit',['post' => $post->id])}}"><i class="fa fa-edit"></i></a>
-                  <a href=""><i class="fa fa-trash"></i></a>
+                  <a href="#" class="delete" id="{{$post->id}}"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
 
@@ -43,11 +43,58 @@
           </table>
 
           
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
         </div>
       </div>
 
 </div>
 <!-- /.container-fluid -->
+@endsection
+
+@section('script')
+
+<script>
+// $('.delete').click(function(){
+//   alert('hello');
+// });
+  $('.delete').click(function(preventDefault){
+        Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+           // "Deleted!",
+          // "Your file has been deleted.",
+          // "success"
+          var id = $(this).attr('id');
+          var url = 'post/'+id;
+
+          $.ajax
+          ({
+            headers :{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
+            url:url,
+            type:"DELETE",
+            datatype:'json',
+            data: {"_method": 'DELETE',},
+            success:function(data){
+                location.reload();
+            }
+          })
+        
+         
+        
+      }
+    })
+
+
+  });
+</script>
+
 
 @endsection

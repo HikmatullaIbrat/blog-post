@@ -4,6 +4,8 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+// use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Str;
 
@@ -38,9 +40,13 @@ class PostController extends Controller
         ]);
         // Generate a slug from the title
         // $validatedData['slug'] = Str::slug($request->sub_title);
-
+        
+       
+        
         Post::create(['title'=>$request->title, 'sub_title'=>$request->sub_title, 'description'=>$request->description, 'slug'=>Str::slug($request->title)]);
-        return redirect()->route('post.index')->with('success', 'Post created successfully.');
+        // Show this message in notification bar when a post is created
+        // Session::flash('success','Post Create Successfully');
+        return redirect()->route('post.index')->with('success','Post Created Successfully');
 
     }
 
@@ -80,16 +86,20 @@ class PostController extends Controller
         $post->slug = Str::slug($request->title);
 
         $post->save();
+        // Show this message in notification bar when a post is updated
+        // Session::flash('success','Post Updated Successfully');
     
-        return redirect()->route('post.index')->with('success', 'Post updated successfully');
+        return redirect()->route('post.index')->with('success','Post Updated Successfully');
 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        Session::flash('success','Post Deleted Successfully');
+        return "success";
     }
 }
