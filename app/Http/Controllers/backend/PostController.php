@@ -55,17 +55,34 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        //
+
+        return view('backend.post.edit')
+        ->with('post', $post);    
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
         //
+        $request->validate([
+            'title' => 'required',
+            'sub_title' =>'required',
+            'description' => 'required'
+        ]);
+        $post->title = $request->title;
+        $post->sub_title = $request->sub_title;
+        $post->description = $request->description;
+        $post->slug = Str::slug($request->title);
+
+        $post->save();
+    
+        return redirect()->route('post.index')->with('success', 'Post updated successfully');
+
     }
 
     /**

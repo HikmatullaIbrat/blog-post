@@ -33,7 +33,7 @@
                 <td>{{$post->sub_title}}</td>
                 <td>{{$post->description}}</td>
                 <td>
-                  <a href=""><i class="fa fa-edit"></i></a>
+                  <a href="{{route('post.edit',['post' => $post->id])}}"><i class="fa fa-edit"></i></a>
                   <a href=""><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
