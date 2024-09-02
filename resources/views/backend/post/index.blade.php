@@ -10,6 +10,7 @@
 
     <div class="card">
         <div class="card-header">
+          
             <a class="btn btn-success float-right" href="{{route('post.create')}}">Create Post</a>
                 
         </div>
@@ -39,8 +40,19 @@
               </tr>
 
               @endforeach
+
+             
             </tbody>
+          
           </table>
+          <div class="row">
+            {{-- {{$posts->links()}} --}}
+            <div class="mx-auto col-2 ">
+              {{$posts->links('pagination::bootstrap-5')}}
+            </div>
+          </div>
+          
+          
 
           
           {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}

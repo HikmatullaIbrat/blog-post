@@ -4,9 +4,12 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use Illuminate\Container\Attributes\DB;
 // use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+
+
 use Str;
 
 class PostController extends Controller
@@ -17,7 +20,7 @@ class PostController extends Controller
     public function index()
     {
         return view('backend.post.index')
-        ->with('posts',Post::all());
+        ->with('posts',Post::paginate(5));
     }
 
     /**

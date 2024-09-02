@@ -11,6 +11,7 @@
 
 
     <title>SB Admin 2 - Blank</title>
+    {{-- it allows csrf-token for ajax request in index.blade.php   --}}
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     <!-- Custom fonts for this template-->
@@ -245,6 +246,7 @@
       @if(Session::has('success'))
       Toast.fire({
         icon: "success",
+        // shows session success message when a CRUD operatino is executed. and its success parameter is sent from PostController CRUD appropriate operation
         title: "{{Session::get('success')}}"
       });
       @endif
