@@ -37,6 +37,9 @@ Route::middleware('auth')->group(
         })->name('dashboard');
 
         Route::resource('post', PostController::class);
+        Route::get('trash', [PostController::class,'trash'])->name('post.trash'); //route for trash button
+        Route::delete('force-delete/{id}',[PostController::class, 'delete'])->name('post.force-delete');
+        Route::get('restore/{id}',[PostController::class, 'restore'])->name('post.restore');
     }
 
 );

@@ -11,9 +11,9 @@
     <div class="card">
         <div class="card-header">
               
-            <a class="btn btn-success float-right" href="{{route('post.create')}}">Create Post</a>
+            {{-- <a class="btn btn-success float-right" href="{{route('post.create')}}">Create Post</a> --}}
             <br><br>
-            <a href="{{route('post.trash')}}" class="btn btn-danger float-right">Trash</a>
+           
                 
         </div>
         <div class="card-body">
@@ -36,7 +36,7 @@
                 <td>{{$post->sub_title}}</td>
                 <td>{{$post->description}}</td>
                 <td>
-                  <a href="{{route('post.edit',['post' => $post->id])}}"><i class="fa fa-edit"></i></a>
+                  <a href="{{route('post.restore',['id' => $post->id])}}">Restore</a>
                   <a href="#" class="delete" id="{{$post->id}}"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
@@ -87,7 +87,7 @@
           // "Your file has been deleted.",
           // "success"
           var id = $(this).attr('id');
-          var url = 'post/'+id;
+          var url = 'force-delete/'+id;
 
           $.ajax
           ({
