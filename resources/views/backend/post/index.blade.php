@@ -10,7 +10,7 @@
 
     <div class="card">
         <div class="card-header">
-          
+              
             <a class="btn btn-success float-right" href="{{route('post.create')}}">Create Post</a>
                 
         </div>

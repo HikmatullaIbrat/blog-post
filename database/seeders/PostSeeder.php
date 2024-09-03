@@ -15,6 +15,6 @@ class PostSeeder extends Seeder
     public function run(): void
     {
         // seeder are used to create fake data
-        Post::create(['title'=>'Kabul City', 'sub_title'=>'Kabul is the Capital of Afghanistan.', 'description'=>'Kabul is the Capital of Afghanistan.Kabul is the Capital of Afghanistan.Kabul is the Capital of Afghanistan.','slug'=>Str::slug('Kabul')]);
+        // Post::create(['title'=>'Kabul City', 'sub_title'=>'Kabul is the Capital of Afghanistan.', 'description'=>'Kabul is the Capital of Afghanistan.Kabul is the Capital of Afghanistan.Kabul is the Capital of Afghanistan.','slug'=>Str::slug('Kabul')]);
     }
 }

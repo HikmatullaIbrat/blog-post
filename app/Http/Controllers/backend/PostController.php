@@ -8,8 +8,6 @@ use Illuminate\Container\Attributes\DB;
 // use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
-
-
 use Str;
 
 class PostController extends Controller
