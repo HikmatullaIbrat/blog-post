@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\AboutController;
 use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -49,6 +50,8 @@ Route::middleware('auth')->group(
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
+
+Route::get('admin/about',[AboutController::class, 'index'])->name('admin.about');
 
 
 Route::middleware('auth')->group(function () {
