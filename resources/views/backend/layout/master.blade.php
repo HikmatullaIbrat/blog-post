@@ -60,6 +60,12 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Posts</span></a>
             </li>
+              <!-- Nav Item - Post Manager -->
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.about')}}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>About</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
