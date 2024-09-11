@@ -20,7 +20,11 @@
                         <i class="fa fa-picture-o"></i> Choose
                       </a>
                     </span>
-                    <input id="thumbnail" class="form-control" type="text" value="{{$settings->logo}}" name="logo">
+                    <input id="thumbnail" class="form-control" type="file" name="logo" accept=".svg">
+
+                    {{-- <input id="thumbnail" class="form-control" type="text" value="{{$settings->logo}}" name="logo"> --}}
+                    {{-- <input type="file" name="logo" accept=".svg"> --}}
+
                   </div>
                   <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                 @error('loge')
@@ -91,7 +95,8 @@
 @section('script')
 <script src="{{asset('/vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
 <script>
-     $('#lfm').filemanager('image');
+      $('#lfm').filemanager('file');
+
 </script>
 
 @endsection

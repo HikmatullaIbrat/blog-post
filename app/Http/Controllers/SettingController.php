@@ -31,11 +31,20 @@ class SettingController extends Controller
         ]);
         // dd("This is request: ");
         // Setting::where('id','2')->update(['logo'=>$request->logo, 'facebook'=>$request->facebook, 'twitter'=>$request->twitter, 'email'=>$request->email,'phone'=>$request->phone,'address'=>$request->address]);
-   
+        $settings = Setting::skip(1)->take(1)->first();
+        if (!$settings) {
+            $settings = new Setting();
+        }
+        if ($request->hasFile('logo')) {
+            $logoPath = $request->file('logo')->store('logos', 'public');
+            $settings->logo = $logoPath;
+        }
+        $settings->save();
+
         $data = [
-            'logo' => $request->logo,
+            // 'logo' => $request->logo,
             'facebook' => $request->facebook,
-            'twitter' => $request->twitter,
+            'twitter' => $request->twitter, 
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,

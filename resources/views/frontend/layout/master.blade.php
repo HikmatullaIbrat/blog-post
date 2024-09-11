@@ -19,7 +19,11 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.html">
+                    @if ($settings && $settings->logo)
+                    <img src="{{ asset('storage/' . $settings->logo) }}"  alt="Logo">
+                    @endif
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -42,22 +46,26 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <ul class="list-inline text-center">
+                            @if($settings->twitter)
                             <li class="list-inline-item">
-                                <a href="#!">
+                                <a href="{{$settings->twitter}}">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
                             </li>
+                            @endif
+                            @if($settings->facebook)
                             <li class="list-inline-item">
-                                <a href="#!">
+                                <a href="{{$settings->facebook}}">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
                             </li>
+                            @endif
                             <li class="list-inline-item">
                                 <a href="#!">
                                     <span class="fa-stack fa-lg">

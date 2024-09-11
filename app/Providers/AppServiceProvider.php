@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
 use Illuminate\Support\ServiceProvider;
+
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,7 +23,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
      
-
+        View::composer('*', function ($view) {
+            $settings = Setting::skip(1)->take(1)->first();
+            $view->with('settings', $settings);
+        });
 
     }
 }
