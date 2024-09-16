@@ -30,10 +30,18 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('home')}}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('about')}}">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('front_post')}}">Sample Post</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('contact.index')}}">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('home')}}"  >{{__('nav.home')}}</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('about')}}">{{__('nav.about')}}</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('front_post')}}">{{__('nav.sample')}}</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('contact.index')}}">{{__('nav.contact')}}</a></li>
+
+                        <li class="nav-item dropdown px-lg-3 py-3 ">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{__('nav.language')}}</a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{{route('locale',['locale'=>'en'])}}">{{__('nav.english')}}</a></li>
+                              <li><a class="dropdown-item" href="{{route('locale',['locale'=>'dr'])}}">{{__('nav.dari')}}</a></li>
+                            </ul>
+                          </li>
                     </ul>
                 </div>
             </div>
