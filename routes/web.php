@@ -2,16 +2,24 @@
 use App\Http\Controllers\AboutController As frontendAboutController;
 use App\Http\Controllers\backend\AboutController;
 use App\Http\Controllers\backend\PostController;
+use App\Http\Controllers\backend\UsersController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
+use App\Models\Profile;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
+use App\Models\User;
 
 
 
 // use Session;
+
+Route::get('/test',function(){
+    // return User::find(1)->profile->image;
+    return Profile::find(1);
+});
 
 Route::get('/',[ HomeController::class, 'index'])->name('home');
 Route::get('/about', [frontendAboutController::class, 'index'])->name('about');
@@ -80,8 +88,11 @@ Route::middleware('auth')->group(
         Route::post('admin/about/update',[AboutController::class, 'store'])->name('admin.about.store') ;
         Route::get('settings',[SettingController::class, 'index'])->name('settings.index');
         Route::post('settings',[SettingController::class, 'store'])->name('settings.store');
-    }
+        Route::get('users',[UsersController::class, 'index'])->name('users.index');
+        Route::post('users',[UsersController::class, 'store'])->name('users.store');
+        Route::get('users/create',[UsersController::class, 'create'])->name('users.create');
 
+    }
 );
 
 

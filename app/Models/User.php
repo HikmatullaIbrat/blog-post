@@ -11,15 +11,23 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function profile(){
+        //points to Profile class to make one to one relationship between Profile and User class
+        // we have to have its reverse relationship as well in back, check user method in Profile.php model
+        return $this->hasOne(Profile::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
+     * 
      */
     protected $fillable = [
         'name',
         'email',
         'password',
+        // 'image'
     ];
 
     /**

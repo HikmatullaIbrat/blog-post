@@ -57,20 +57,25 @@
             <!-- Nav Item - Post Manager -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('post.index')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fa fa-rss-square" aria-hidden="true"></i>
                     <span>Posts</span></a>
             </li>
               <!-- Nav Item - Post Manager -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.about')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>About</span></a>
+                    <i class="fa fa-info-circle"></i>
+                    <span>About US</span></a>
             </li>
             <!-- Nav Item - Post Manager -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('settings.index')}}">
                     <i class="fa fa-cog" aria-hidden="true"></i>
                     <span>Settings</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('users.index')}}">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span>Users</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

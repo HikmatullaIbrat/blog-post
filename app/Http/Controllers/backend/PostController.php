@@ -44,7 +44,7 @@ class PostController extends Controller
         
        
         
-        Post::create(['title'=>$request->title, 'sub_title'=>$request->sub_title, 'description'=>$request->description, 'slug'=>Str::slug($request->title)]);
+        Post::create(['title'=>$request->title, 'sub_title'=>$request->sub_title, 'description'=>$request->description, 'slug'=>Str::slug($request->title), 'lang'=>app()->getLocale()]);
         // Show this message in notification bar when a post is created
         // Session::flash('success','Post Create Successfully');
         return redirect()->route('post.index')->with('success','Post Created Successfully');
